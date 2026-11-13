@@ -56,19 +56,44 @@ cp -R skills/reka-rupa ~/.claude/skills/
 Other agents that support the Agent Skills format use their own skills folder;
 copy the same directory.
 
-Once this repository is published, the community `skills` CLI
-([vercel-labs/skills](https://github.com/vercel-labs/skills)) can install it:
+With the community `skills` CLI
+([vercel-labs/skills](https://github.com/vercel-labs/skills)):
 
 ```bash
-npx skills add <owner>/<repo> --skill reka-rupa
+# see what the repository offers, without installing
+npx skills add drnhsproject/reka-rupa --list
+
+# install into the current project
+npx skills add drnhsproject/reka-rupa --skill reka-rupa
+
+# install for one agent, or for every project of yours
+npx skills add drnhsproject/reka-rupa --skill reka-rupa -a claude-code
+npx skills add drnhsproject/reka-rupa --skill reka-rupa -g
 ```
 
-By its README the CLI detects the agents installed on your machine and lets
-you choose which ones to install to (Claude Code, and others it supports);
-`-a <agent>` picks one directly and `-g` installs for every project. It
-collects anonymous usage data unless `DISABLE_TELEMETRY=1` is set. This is a
-third-party tool, and its behaviour has not been verified against this
-repository.
+In a normal terminal the CLI detects the agents installed on your machine and
+lets you choose where to install; `-a <agent>` skips that choice (`-a '*'` for
+all). Checked on this repository: `--list` finds the skill, and
+`--skill reka-rupa -a claude-code` copies all 11 files to
+`.claude/skills/reka-rupa/`, identical to this repository. Not checked: the
+interactive agent prompt, and agents other than Claude Code.
+
+The CLI collects anonymous usage data; set `DISABLE_TELEMETRY=1` to opt out.
+It is a third-party tool. Skills run with your agent's permissions, so read
+`SKILL.md` before installing any skill, this one included.
+
+### Updating
+
+Updates are manual; installed copies do not change on their own.
+
+```bash
+npx skills check          # is a newer version available?
+npx skills update         # update installed skills (-g global, -p project)
+```
+
+The CLI records what it installed in `skills-lock.json` (commit it with your
+project if you want teammates to get the same version). Changes are listed in
+`CHANGELOG.md`, and releases are tagged (`v0.1.0`, ...).
 
 ## Requirements
 
