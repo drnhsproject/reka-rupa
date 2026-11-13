@@ -4,7 +4,27 @@ An Agent Skill that acts as a senior UI/UX designer and then writes the code.
 It reads the project's own rules first, asks before it decides, matches a given
 design exactly, and reviews UI without changing anything.
 
-*Reka rupa* is Indonesian for "design" (literally, to devise a form).
+## What the name means
+
+*Reka rupa* is Indonesian for "design". It is two words:
+
+- ***reka***: to devise, plan or create. Indonesian dictionaries (KBBI) give
+  *rekaan* as composition, something made, a design or a scheme, and *reka
+  bentuk* as a design drawing.
+- ***rupa***: form, shape, appearance. It comes from Sanskrit *rūpa* (form),
+  which Indonesian and Sundanese both borrowed. It is also the root of *seni
+  rupa* (visual arts).
+
+Together: to devise a form, which is what a designer does. The name fits a
+skill that designs an interface and then builds it.
+
+## What a skill is
+
+An Agent Skill is a folder of instructions (`SKILL.md`), reference notes and
+optional scripts that an AI coding agent loads when a task matches. It does not
+add a tool or a model. It gives the agent a repeatable method, so the same kind
+of task is done the same way each time. This skill's task is UI/UX design and
+front-end implementation.
 
 ## What it does
 
