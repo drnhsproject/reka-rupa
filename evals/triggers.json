@@ -1,0 +1,90 @@
+[
+ {
+  "trigger": true,
+  "query": "Rancang halaman pengaturan profil untuk aplikasi ini, lengkap dengan state kosong dan error."
+ },
+ {
+  "trigger": true,
+  "query": "Design a pricing page for our SaaS and then build it in React."
+ },
+ {
+  "trigger": true,
+  "query": "Tim desain sudah kirim screenshot halaman login. Tolong samakan persis tampilannya di kode kita."
+ },
+ {
+  "trigger": true,
+  "query": "Review UI halaman dashboard kita: aksesibilitas, kontras, dan tampilannya di layar HP."
+ },
+ {
+  "trigger": true,
+  "query": "The checkout screen breaks on mobile and tablet. Make it responsive."
+ },
+ {
+  "trigger": true,
+  "query": "Adopsi desain dari Figma ini ke kode: https://www.figma.com/design/abc123/App?node-id=1-2"
+ },
+ {
+  "trigger": true,
+  "query": "buat desain komponen kartu produk yang modern dan rapi"
+ },
+ {
+  "trigger": true,
+  "query": "Our onboarding flow looks generic, like every AI-made app. Redesign it."
+ },
+ {
+  "trigger": true,
+  "query": "Tambahkan halaman daftar pelanggan dengan tabel, pencarian, dan filter status."
+ },
+ {
+  "trigger": true,
+  "query": "Make the navbar look nicer, it feels cluttered."
+ },
+ {
+  "trigger": true,
+  "query": "Rapikan tampilan tabel order, kolomnya berantakan kalau dibuka di HP."
+ },
+ {
+  "trigger": false,
+  "query": "Ganti warna tombol Simpan di Header.tsx jadi biru primary."
+ },
+ {
+  "trigger": false,
+  "query": "Ubah teks tombol 'Kirim' menjadi 'Simpan' di form kontak."
+ },
+ {
+  "trigger": false,
+  "query": "Fix the bug where the login form submits twice when I press Enter."
+ },
+ {
+  "trigger": false,
+  "query": "Add an API endpoint that exports orders to CSV."
+ },
+ {
+  "trigger": false,
+  "query": "Write unit tests for the useCart hook."
+ },
+ {
+  "trigger": false,
+  "query": "Kenapa build Vite saya error 'Cannot find module ./App'?"
+ },
+ {
+  "trigger": false,
+  "query": "Convert this React class component to a function component with hooks."
+ },
+ {
+  "trigger": false,
+  "query": "Buatkan dokumentasi fitur checkout untuk tim bisnis yang tidak paham kode."
+ },
+ {
+  "trigger": false,
+  "query": "Perbaiki padding kartu di ProductCard.tsx, ganti p-2 jadi p-4."
+ },
+ {
+  "trigger": false,
+  "query": "Add a loading spinner to the submit button while the request is pending."
+ },
+ {
+  "trigger": false,
+  "query": "Rename the Button component's 'kind' prop to 'variant' across the codebase."
+ }
+]

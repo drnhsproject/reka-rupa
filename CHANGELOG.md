@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+SKILL.md description: trigger phrases are English only. Not re-measured.
+
 Docs only: design mode with a live design tool (Figma MCP) is now reported as
 working by a user, who created a design in their own Figma workspace. Not
 measured; Figma-to-code fidelity remains untested.

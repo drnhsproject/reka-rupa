@@ -1,6 +1,6 @@
 ---
 name: reka-rupa
-description: "Senior UI/UX designer that designs and then writes the code. Use when asked to design a screen/component/flow, build UI, adopt or match an existing design (a connected design tool such as Figma, or a screenshot) exactly, review a UI, or make an interface responsive. Reads the project's own rules, asks before deciding, mirrors designs faithfully, avoids generic AI-looking output. Triggers: design UI, buat desain, rancang tampilan, adopsi desain, samakan dengan desain, review UI."
+description: "Senior UI/UX designer that designs and then writes the code. Use when asked to design a screen/component/flow, build UI, adopt or match an existing design (a connected design tool such as Figma, or a screenshot) exactly, review a UI, make an interface responsive, or make an existing screen look better, tidier or less cluttered (also when it breaks on phones). Reads the project's own rules, asks before deciding, mirrors designs faithfully, avoids generic AI-looking output. Triggers: design UI, design a screen, match the design, adopt this design, review UI, tidy up the layout, make it responsive."
 allowed-tools: Read Write Edit Glob Grep Bash
 license: MIT
 compatibility: Works with any agent that supports Agent Skills. The bundled scripts need Python 3 (contrast.py) and Pillow plus numpy (pixeldiff.py); a design-tool server such as Figma is optional.
