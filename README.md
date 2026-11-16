@@ -146,9 +146,14 @@ Tested, with a fresh agent following only the skill:
   the original: 0.000% of pixels differing after the third revision of the
   protocol (5.0% and 0.55% in earlier revisions, which drove the fixes).
 - Converting that build's px values to rem left it at 0.000%.
+- Design mode against a live design tool: a user ran it with the Figma MCP
+  server and it produced a design in their own Figma workspace. This is a
+  user-reported success; it was not measured (no fidelity numbers), and the
+  reading direction (Figma to code) was not part of that test.
 
 Not tested:
-- Design mode against a live design tool such as Figma.
+- Fidelity against a live Figma source (reading a Figma design and building
+  code from it, compared pixel by pixel).
 - Fidelity for icons, photos, shadows, web fonts and interactive states.
 - Native mobile projects.
 - Larger screens than a single list page.
