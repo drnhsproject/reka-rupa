@@ -26,11 +26,15 @@ Never assume; never invent a convention the project does not have.
    empty states, errors). Note language, formality, and terminology.
 8. **Design tools**: check which design tool servers are connected
    (a tool listed as available counts as connected, even if its schema loads on demand). Prefer a connected tool for design
-   work; fall back to screenshots or a text spec.
-9. **Tests and project check**: the command that must be green before work
+   work; fall back to screenshots or a text spec. Any server counts, not only
+   Figma (`design-systems.md` §4).
+9. **Design system**: one the user named or passed with `--design-system=`
+   outranks the project's own tokens; read `design-systems.md` and report
+   conflicts instead of merging.
+10. **Tests and project check**: the command that must be green before work
    counts as done, and how existing UI tests query elements. If there are
    several (lint, build), name them all; if none, say "none defined".
-10. **Theme vendors and modes**: a vendor template (Bootstrap or admin
+11. **Theme vendors and modes**: a vendor template (Bootstrap or admin
     skins) usually keeps tokens in Sass variables plus a project override file;
     follow the import chain. Note app modes switched by env vars.
 
@@ -50,7 +54,8 @@ Single-quote any user-supplied keyword in shell commands.
 
 > Project: `<framework>`, tokens in `<path>`, shared components in `<path>`,
 > mock layer `<path or none>`, UI language `<language, tone>`.
-> Check: `<command(s) or none defined>`; design tool: `<connected tool or none>`.
+> Check: `<command(s) or none defined>`; design tool: `<connected tool or none>`;
+> design system: `<source, or none>`.
 
 Caveats (missing docs, conflicts, unopened files) go on a separate line
 after these two.

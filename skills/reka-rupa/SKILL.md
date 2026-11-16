@@ -1,6 +1,6 @@
 ---
 name: reka-rupa
-description: "Senior UI/UX designer that designs and then writes the code. Use when asked to design a screen/component/flow, build UI, adopt or match an existing design (a connected design tool such as Figma, or a screenshot) exactly, review a UI, make an interface responsive, or make an existing screen look better, tidier or less cluttered (also when it breaks on phones). Reads the project's own rules, asks before deciding, mirrors designs faithfully, avoids generic AI-looking output. Triggers: design UI, design a screen, match the design, adopt this design, review UI, tidy up the layout, make it responsive."
+description: "Senior UI/UX designer that designs and then writes the code. Use when asked to design a screen/component/flow, build UI, adopt or match an existing design (a connected design tool such as Figma, or a screenshot) exactly, review a UI, make an interface responsive, or make an existing screen look better, tidier or less cluttered (also when it breaks on phones). Reads the project's own rules, asks before deciding, mirrors designs faithfully, avoids generic AI-looking output. Triggers: design UI, design a screen, match the design, adopt this design, follow this design system, review UI, tidy up the layout, make it responsive."
 allowed-tools: Read Write Edit Glob Grep Bash
 license: MIT
 compatibility: Works with any agent that supports Agent Skills. The bundled scripts need Python 3 (contrast.py) and Pillow plus numpy (pixeldiff.py); a design-tool server such as Figma is optional.
@@ -25,7 +25,8 @@ project is discovered at run time (Step 1), never assumed.
 /reka-rupa <what to make>
   --mode=design|code|both|review     default: both
   --target=screen|component|flow
-  --source=tool|screenshot|none      tool = a connected design-tool server (e.g. Figma)
+  --source=tool|screenshot|none      tool = a connected design-tool server (Figma or any other)
+  --design-system=<path|url|name|none>  a design system to follow; default: the project's own
   --fidelity=sketch|spec|pixel       pixel = identical to the source
   --a11y=strict|default              default: default; see references/accessibility.md
   --scope=<path>                     limit reading and writing to a path
@@ -69,7 +70,8 @@ Approval checkpoints ("gates") are marked ⛔: stop and wait for an explicit go.
 Load `references/project-adapter.md` and discover: entry docs and UI
 rules, theme or token file, shared components, mock-data layer, language
 and tone of existing UI text, the project check (lint/typecheck/tests),
-and which design tools are connected. Report the findings in two lines at
+which design tools are connected, and which design system applies (one the
+user gave outranks the project's own; see `references/design-systems.md`). Report the findings in two lines at
 the top of your reply. Missing a rule is not licence to invent one.
 
 ### Step 2: Brief
@@ -246,6 +248,7 @@ Load only what the current step needs.
 | `references/copy-and-mock.md` | Any visible text or mock data |
 | `references/code-quality.md` | Step 6, and review mode |
 | `references/web-standards.md` | Any web target: Steps 4 and 6, and review mode |
+| `references/design-systems.md` | A design system is given or named, a design tool is connected, or tokens come from a design tool |
 | `references/fidelity-protocol.md` | Any adoption of an existing design (and `scripts/pixeldiff.py` to compare) |
 
 ## Output

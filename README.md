@@ -41,8 +41,20 @@ front-end implementation.
 ```
 
 Flags: `--mode`, `--target=screen|component|flow`, `--source=tool|screenshot|none`,
-`--fidelity=sketch|spec|pixel`, `--a11y=strict|default`, `--scope=<path>`,
-`--no-save`.
+`--fidelity=sketch|spec|pixel`, `--design-system=<path|url|name|none>`,
+`--a11y=strict|default`, `--scope=<path>`, `--no-save`.
+
+## Design tools and design systems
+
+- **Any design-tool server.** The skill checks which server is connected and
+  works from what it can do (read a design, read the design system, write a
+  design), not from a product name. Figma is the only one tried so far; see
+  the status below.
+- **A design system you give it.** Pass `--design-system=` (a tokens file, a
+  docs folder, a URL, a library in the connected tool) or name it in the
+  request. It outranks the project's own tokens; conflicts are reported and
+  asked, never merged silently. Values the system lacks are listed as gaps,
+  not invented. Details in `references/design-systems.md`.
 
 ## How it differs from a style-guidance skill
 
@@ -94,7 +106,7 @@ npx skills add drnhsproject/reka-rupa --skill reka-rupa -g
 In a normal terminal the CLI detects the agents installed on your machine and
 lets you choose where to install; `-a <agent>` skips that choice (`-a '*'` for
 all). Checked on this repository: `--list` finds the skill, and
-`--skill reka-rupa -a claude-code` copies all 11 files to
+`--skill reka-rupa -a claude-code` copies all files (11 at the time of that check, before design-systems.md was added) to
 `.claude/skills/reka-rupa/`, identical to this repository. Not checked: the
 interactive agent prompt, and agents other than Claude Code.
 
@@ -129,7 +141,7 @@ None for the skill itself. Optional helpers in `skills/reka-rupa/scripts/`:
 ```
 skills/reka-rupa/
   SKILL.md            flow, gates, modes, quality checklist
-  references/         loaded on demand: project-adapter, design-craft,
+  references/         loaded on demand: project-adapter, design-systems, design-craft,
                       accessibility, responsive, copy-and-mock, code-quality,
                       web-standards, fidelity-protocol
   scripts/            contrast.py, pixeldiff.py
@@ -151,7 +163,18 @@ Tested, with a fresh agent following only the skill:
   user-reported success; it was not measured (no fidelity numbers), and the
   reading direction (Figma to code) was not part of that test.
 
+- Design mode with FigCraft (local MCP server): one page built end to end
+  (new file, about 200 layers, images and imported SVG icons, saved and
+  exported). User-visible result, compared by eye; not measured.
+
 Not tested:
+- Figma Console (community server), Claude Design and any other design-tool
+  server: handled only by the generic rules in `design-systems.md`.
+- FigCraft beyond one run: a landing page was built from a website and compared
+  with a screenshot of it by eye only; no pixel measurement, and the fonts of
+  the source were not installed.
+- Following a design system given with `--design-system=` (added after the
+  tests above, never run).
 - Fidelity against a live Figma source (reading a Figma design and building
   code from it, compared pixel by pixel).
 - Fidelity for icons, photos, shadows, web fonts and interactive states.

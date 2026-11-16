@@ -24,6 +24,13 @@ screenshots yourself, make sure the viewport really is the width you think:
 headless browsers enforce a minimum window width and silently lay the page out
 wider; render inside an iframe of the exact width instead.
 
+**Never adopt a live website from its HTML and CSS alone.** Colours, fonts and
+layout read from source can miss the real look (background images, inline icons,
+which font is actually used, what the buttons are coloured). If a reference
+image is not available, ask the user for a full-page screenshot, or for
+permission to render the page, before building. A build made from source text
+alone is a guess and must be reported as one.
+
 From pixels alone, line height, letter spacing and font weight cannot be read,
 only inferred. Probe candidates (ink width at a known size, cap height,
 baselines) and label each **estimated**. When several values match, give the
@@ -41,6 +48,8 @@ alignment of items.
 
 ## 3. Map to tokens, honestly
 
+- When a design system was given (`design-systems.md`), map to its tokens
+  first, then to the project's token layer.
 - Match each value to the nearest project token. If it matches exactly, use the
   token.
 - If no token matches exactly, **do not round silently.** Report it:
