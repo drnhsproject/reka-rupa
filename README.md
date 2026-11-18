@@ -178,6 +178,11 @@ Tested, with a fresh agent following only the skill:
   again left the repeated focus-ring classes inline and again did not propose
   `mock-data.json`; it did produce a `text/tailwindcss` block with theme colours.
   The stricter wording is not shown to change that behaviour.
+  A third run, from a small design built in FigCraft and read through its MCP
+  tools (`--source=tool`), followed the preset: repeated elements abstracted
+  with `@apply` in a `text/tailwindcss` block, no inline `style`, reduced-motion
+  overrides, and a `mock-data.json` proposal in the questions. Nothing was
+  rendered or measured (no browser), so fidelity to the design is unchecked.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single
