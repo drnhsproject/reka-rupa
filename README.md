@@ -188,7 +188,12 @@ Tested, with a fresh agent following only the skill:
   that sits about 2 px lower from the heading down. Block positions, widths,
   colours and card geometry match the design's measurements; the text and
   line-height differences come from Inter being drawn by two different font
-  engines (the page loads Inter from Google Fonts). Only 1280 px was compared.
+  engines (the page loads Inter from Google Fonts). Only 1280 px was compared
+  against the design. At 768 px and at 320 px (inside a 320 px frame, because
+  headless Chrome will not go below about 500 px) the page was inspected by eye:
+  no horizontal overflow, cards in two and one columns, nav links wrap under the
+  logo at 320 px. The nav links are about 21 px tall, below the 44 px target
+  size, as the agent itself reported.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single
