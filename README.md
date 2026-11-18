@@ -208,6 +208,18 @@ Tested, with a fresh agent following only the skill:
   those two as unreliable and check the Questions list for them. Every run also
   used one Bash call that had been disallowed. One run per variant; no
   statistics.
+  In 0.1.2 the menu became a required build item and both items moved into a
+  "Required in every reply" block. Two independent runs of a different design
+  (page 1 of `ai-skills-portfolio.design-v2`, 1440 and 390 px frames): both
+  built the disclosure menu and both proposed `mock-data.json` with the
+  repeated components counted. Pixel difference 1.7% to 1.9% at 1440 px and
+  3.6% to 3.8% at 390 px. The agents reported the cause of the 1 px
+  shifts as not isolated. A later manual check on run 1 (kept outside this
+  repo, in `uji-reka-rupa/portfolio-v2-run1/_shift-check/`) matched 93 text
+  boxes per frame to the design (one false pairing at 390 px). It found no
+  block-level layout difference; the measured offsets are four step titles
+  1 px off and about 2 px on the nav links, and the rest is glyph
+  rasterisation and text widths. Two runs, not statistics; a different design from the one that failed in 0.1.1.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single
