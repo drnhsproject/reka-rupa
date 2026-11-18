@@ -42,6 +42,7 @@ front-end implementation.
 
 Flags: `--mode`, `--target=screen|component|flow`, `--source=tool|screenshot|none`,
 `--fidelity=sketch|spec|pixel`, `--design-system=<path|url|name|none>`,
+`--stack=project|tailwind-static`,
 `--a11y=strict|default`, `--scope=<path>`, `--no-save`.
 
 ## Design tools and design systems
@@ -106,7 +107,7 @@ npx skills add drnhsproject/reka-rupa --skill reka-rupa -g
 In a normal terminal the CLI detects the agents installed on your machine and
 lets you choose where to install; `-a <agent>` skips that choice (`-a '*'` for
 all). Checked on this repository: `--list` finds the skill, and
-`--skill reka-rupa -a claude-code` copies all files (11 at the time of that check, before design-systems.md was added) to
+`--skill reka-rupa -a claude-code` copies all files (11 at the time of that check, before design-systems.md and stack-tailwind-static.md were added) to
 `.claude/skills/reka-rupa/`, identical to this repository. Not checked: the
 interactive agent prompt, and agents other than Claude Code.
 
@@ -143,7 +144,7 @@ skills/reka-rupa/
   SKILL.md            flow, gates, modes, quality checklist
   references/         loaded on demand: project-adapter, design-systems, design-craft,
                       accessibility, responsive, copy-and-mock, code-quality,
-                      web-standards, fidelity-protocol
+                      web-standards, fidelity-protocol, stack-tailwind-static
   scripts/            contrast.py, pixeldiff.py
 ```
 
@@ -167,6 +168,52 @@ Tested, with a fresh agent following only the skill:
   (new file, about 200 layers, images and imported SVG icons, saved and
   exported). User-visible result, compared by eye; not measured.
 
+- Preset `--stack=tailwind-static`, read from two small designs built in
+  FigCraft and read through its MCP tools (`--source=tool`): a landing page
+  (header, hero, three repeated cards) and a sign-up page (form with labels,
+  inputs, repeated feature rows). Both builds abstracted repeated elements with
+  `@apply` in a `text/tailwindcss` block, had no inline `style`, used rem,
+  carried reduced-motion overrides, proposed `mock-data.json` instead of
+  creating it, and noted that the Play CDN is not a production delivery. The
+  second design also got labelled inputs with `autocomplete`, and the nav link
+  got a 44 px hit area by padding (reported as a difference). Rendered afterwards
+  in headless Chrome at 1280 px and compared with each design's PNG export:
+  3.1% to 4.5% of pixels differ for the landing page and 6.7% for the sign-up
+  page, inside text. Block positions, widths, colours and geometry match the
+  design's measurements; the text differences come from Inter being drawn by two
+  font engines (so a heading can wrap on a different word). At 768 px and at
+  320 px the landing page was inspected by eye: no horizontal overflow. Earlier
+  runs from a plain screenshot, before the rules were tightened, followed the
+  preset only partly (repeated classes left inline, no `mock-data.json`
+  proposal), so give the agent a structured source or a clear screenshot and
+  read its Questions list.
+- Preset on a larger design: a 1440 x 2691 px landing page built in FigCraft
+  (hero, tabs, 13 icon cards, 12 client logos, illustrations, footer), one run.
+  The agent exported its own assets (44 files, all referenced, none missing),
+  gave every image an `alt` and dimensions, used no inline `style` and no px
+  values, and reported the design's low button contrast (about 1.6:1 and 2.5:1)
+  instead of fixing it silently. Rendered in headless Chrome and compared with
+  the design's PNG: 6.1% of pixels differ at 1440 px, mostly text and a drift of
+  about 10 px downward from the hero onward; the layout is otherwise the same.
+  Gaps found: below desktop width the main navigation disappears with no menu
+  replacement, the hero illustration is cropped at 320 px, 29 links are left as
+  `href="#"` (reported), no `mock-data.json` proposal was made for the repeated
+  cards, and the agent's file count (50) did not match the folder (44). Widths
+  between 320 and 1440 were not compared with a design.
+  Rules for a mobile menu, a `mock-data.json` proposal and counts taken from a
+  folder listing were then added to the preset and to Step 7 of `SKILL.md`. Two
+  more runs of the same design: the file counts became consistent with the
+  folder (one run still gave three different counts before the Step 7 line was
+  added), but neither run proposed a mobile menu or `mock-data.json`, so treat
+  those two as unreliable and check the Questions list for them. Every run also
+  used one Bash call that had been disallowed. One run per variant; no
+  statistics.
+- Trigger queries: 24 queries run once each with a small model (haiku): 18
+  pass. Five of the six failures also fail with the previous description and
+  one (a component-card request) passed before and failed now, which a single
+  run cannot tell apart from noise. The two slice queries: one passes, one
+  (Indonesian) went to a different, installed Figma skill.
+
 Not tested:
 - Figma Console (community server), Claude Design and any other design-tool
   server: handled only by the generic rules in `design-systems.md`.
@@ -179,7 +226,7 @@ Not tested:
   code from it, compared pixel by pixel).
 - Fidelity for icons, photos, shadows, web fonts and interactive states.
 - Native mobile projects.
-- Larger screens than a single list page.
+- Pages much larger than the one above, real client sites, and pages with forms that submit or scripts beyond a reveal.
 
 The test sources and measurements were produced in a controlled setup (same
 machine, system fonts); real-world screenshots will differ.

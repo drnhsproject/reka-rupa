@@ -21,6 +21,16 @@ this file.
 - A project that already works in px keeps its tokens as they are; propose the
   move, do not do it silently.
 
+## Styles
+
+- No `style="..."` attribute. Styling lives in classes and tokens. The only
+  exception is a value that is truly dynamic at run time (a computed width, a
+  progress percentage), set with `element.style.setProperty` or the framework's
+  own style binding, never as a literal attribute holding fixed values.
+- Write base styles for the smallest width first, then widen with `min-width`
+  queries (or the framework's breakpoint prefixes). A project that is already
+  desktop-first keeps its approach; propose the move, do not do it silently.
+
 ## Images
 
 - Reserve the space: give every image `width` and `height` attributes that
@@ -88,11 +98,18 @@ file, or a missing `alt` on an informative image, is Medium (High when it is
 the primary action); generic alt, lazy-loading or dimension gaps, px in a rem
 project and title or description length outside the ranges are Low. The
 length ranges are guidelines, not limits.
- an `<img>` without `alt`, generic or
-file-name alt; fixed `width: Npx` on a fluid image; a hero image with
-`loading="lazy"`; below-fold images without it; missing `width`/`height`;
-px sizes for text, padding or radius in a rem project; more than one `<h1>`
-or none; missing title or description; `href="#"` navigation.
+
+Signals to look for:
+
+- An `<img>` without `alt`, or with a generic or file-name alt.
+- Fixed `width: Npx` on a fluid image.
+- A hero image with `loading="lazy"`, or below-fold images without it.
+- Missing `width`/`height` on images.
+- px sizes for text, padding or radius in a rem project.
+- A `style="..."` attribute holding static values (Low).
+- More than one `<h1>`, or none.
+- Missing title or description.
+- `href="#"` navigation.
 
 ## Conflicts
 
