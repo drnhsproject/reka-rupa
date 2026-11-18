@@ -182,7 +182,13 @@ Tested, with a fresh agent following only the skill:
   tools (`--source=tool`), followed the preset: repeated elements abstracted
   with `@apply` in a `text/tailwindcss` block, no inline `style`, reduced-motion
   overrides, and a `mock-data.json` proposal in the questions. Nothing was
-  rendered or measured (no browser), so fidelity to the design is unchecked.
+  rendered by the agent (it had no browser). Rendered afterwards in headless
+  Chrome at 1280 px and compared with the design's PNG export: 3.1% of pixels
+  differ (max channel difference over 32), nearly all inside text, plus a build
+  that sits about 2 px lower from the heading down. Block positions, widths,
+  colours and card geometry match the design's measurements; the text and
+  line-height differences come from Inter being drawn by two different font
+  engines (the page loads Inter from Google Fonts). Only 1280 px was compared.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single
