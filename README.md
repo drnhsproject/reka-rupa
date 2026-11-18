@@ -168,32 +168,25 @@ Tested, with a fresh agent following only the skill:
   (new file, about 200 layers, images and imported SVG icons, saved and
   exported). User-visible result, compared by eye; not measured.
 
-- Preset `--stack=tailwind-static`, one run from a generated screenshot of a
-  small page (no browser, so nothing was rendered or measured). It produced
-  `index.html` with no inline `style`, rem units, focus states and a question
-  about Tailwind delivery, but it did not abstract the repeated cards and focus
-  classes with `@apply` and did not propose `mock-data.json`. Treat the preset
-  as only partly followed. After the rules for repeated elements and the
-  `mock-data.json` proposal were made stricter, a second run (same screenshot)
-  again left the repeated focus-ring classes inline and again did not propose
-  `mock-data.json`; it did produce a `text/tailwindcss` block with theme colours.
-  The stricter wording is not shown to change that behaviour.
-  A third run, from a small design built in FigCraft and read through its MCP
-  tools (`--source=tool`), followed the preset: repeated elements abstracted
-  with `@apply` in a `text/tailwindcss` block, no inline `style`, reduced-motion
-  overrides, and a `mock-data.json` proposal in the questions. Nothing was
-  rendered by the agent (it had no browser). Rendered afterwards in headless
-  Chrome at 1280 px and compared with the design's PNG export: 3.1% of pixels
-  differ (max channel difference over 32), nearly all inside text, plus a build
-  that sits about 2 px lower from the heading down. Block positions, widths,
-  colours and card geometry match the design's measurements; the text and
-  line-height differences come from Inter being drawn by two different font
-  engines (the page loads Inter from Google Fonts). Only 1280 px was compared
-  against the design. At 768 px and at 320 px (inside a 320 px frame, because
-  headless Chrome will not go below about 500 px) the page was inspected by eye:
-  no horizontal overflow, cards in two and one columns, nav links wrap under the
-  logo at 320 px. The nav links are about 21 px tall, below the 44 px target
-  size, as the agent itself reported.
+- Preset `--stack=tailwind-static`, read from two small designs built in
+  FigCraft and read through its MCP tools (`--source=tool`): a landing page
+  (header, hero, three repeated cards) and a sign-up page (form with labels,
+  inputs, repeated feature rows). Both builds abstracted repeated elements with
+  `@apply` in a `text/tailwindcss` block, had no inline `style`, used rem,
+  carried reduced-motion overrides, proposed `mock-data.json` instead of
+  creating it, and noted that the Play CDN is not a production delivery. The
+  second design also got labelled inputs with `autocomplete`, and the nav link
+  got a 44 px hit area by padding (reported as a difference). Rendered afterwards
+  in headless Chrome at 1280 px and compared with each design's PNG export:
+  3.1% to 4.5% of pixels differ for the landing page and 6.7% for the sign-up
+  page, inside text. Block positions, widths, colours and geometry match the
+  design's measurements; the text differences come from Inter being drawn by two
+  font engines (so a heading can wrap on a different word). At 768 px and at
+  320 px the landing page was inspected by eye: no horizontal overflow. Earlier
+  runs from a plain screenshot, before the rules were tightened, followed the
+  preset only partly (repeated classes left inline, no `mock-data.json`
+  proposal), so give the agent a structured source or a clear screenshot and
+  read its Questions list.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single

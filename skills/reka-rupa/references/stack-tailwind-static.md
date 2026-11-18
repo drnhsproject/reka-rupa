@@ -57,6 +57,17 @@ to follow the project (`code-quality.md`) or this preset; do not choose silently
    user agrees (`copy-and-mock.md`). Put that proposal in the Questions list of
    the reply; do not leave it out because the page can be built without it.
 
+8. **Touch targets.** Every link and control has a hit area of at least
+   2.75rem x 2.75rem (`accessibility.md`), without changing the measured look:
+   keep the drawn size and extend the hit area with padding the design does not
+   show or a pseudo-element (`relative after:absolute after:-inset-3`), and
+   report the extension in the differences table. A text link the design draws
+   at 1.3rem tall is the common case.
+9. **Production.** The Play CDN is for a page being built or reviewed, not for
+   production. In the reply, say that a compiled stylesheet (Tailwind CLI) is
+   the production delivery and offer to produce it; do not add that dependency
+   until the user agrees.
+
 ## Output
 
 ```
@@ -74,5 +85,6 @@ assets/          images, icons, SVGs in subfolders
 - [ ] No inline `style`; repeated elements abstracted once in `custom.css`
 - [ ] rem throughout; mobile-first breakpoints
 - [ ] Hover, active and focus states present; reduced motion honoured
+- [ ] Links and controls have a 2.75rem hit area; the extension is reported
 - [ ] Assets under `assets/`; hero not lazy; below-fold images lazy
 - [ ] `mock-data.json` proposed, approved, and matches what the page shows
