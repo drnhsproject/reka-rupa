@@ -139,6 +139,11 @@ built result at every target width and compare against the design with the
 fidelity protocol. State what matched, what differs, and why. Never claim a
 check you did not run.
 
+With `--stack` set, open that preset's file again before replying and answer
+every line of its Checklist and its Reporting section. A line you cannot tick
+goes into the reply with the reason; do not leave it out. Numbers in the reply
+(files, images, links) come from a listing of the folder, not from memory.
+
 ## Mode: review
 
 Audit only; change nothing. Step 1 still applies; Steps 2 to 7 are replaced

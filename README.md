@@ -200,6 +200,14 @@ Tested, with a fresh agent following only the skill:
   `href="#"` (reported), no `mock-data.json` proposal was made for the repeated
   cards, and the agent's file count (50) did not match the folder (44). Widths
   between 320 and 1440 were not compared with a design.
+  Rules for a mobile menu, a `mock-data.json` proposal and counts taken from a
+  folder listing were then added to the preset and to Step 7 of `SKILL.md`. Two
+  more runs of the same design: the file counts became consistent with the
+  folder (one run still gave three different counts before the Step 7 line was
+  added), but neither run proposed a mobile menu or `mock-data.json`, so treat
+  those two as unreliable and check the Questions list for them. Every run also
+  used one Bash call that had been disallowed. One run per variant; no
+  statistics.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single
