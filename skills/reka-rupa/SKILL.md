@@ -6,7 +6,7 @@ license: MIT
 compatibility: Works with any agent that supports Agent Skills. The bundled scripts need Python 3 (contrast.py) and Pillow plus numpy (pixeldiff.py); a design-tool server such as Figma is optional.
 metadata:
   author: "drnhsproject"
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 # reka-rupa
 
@@ -131,6 +131,8 @@ a value. Build mock data through the project's existing mock layer. With
 `--mode=code` there is no design gate, so list token gaps, unknown behaviour
 and extrapolated widths under "Questions", directly after the two-line adapter
 report. The four-question cap is for Step 2 only; group these by cause.
+With `--stack=tailwind-static`, the preset's "Required in every reply" items
+(mobile menu, `mock-data.json` proposal) go in the same list.
 
 ### Step 7: Verify
 
@@ -141,7 +143,8 @@ check you did not run.
 
 With `--stack` set, open that preset's file again before replying and answer
 every line of its Checklist and its Reporting section. A line you cannot tick
-goes into the reply with the reason; do not leave it out. Numbers in the reply
+goes into the reply with the reason; do not leave it out. A reply without the
+preset's "Required in every reply" items is incomplete. Numbers in the reply
 (files, images, links) come from a listing of the folder, not from memory.
 
 ## Mode: review

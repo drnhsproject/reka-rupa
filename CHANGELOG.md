@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.2
+
+Changed:
+- `tailwind-static`: when navigation no longer fits, the agent builds a disclosure
+  menu (button with `aria-expanded` and `aria-controls`, the same links) and
+  reports it as extrapolated, instead of only asking and leaving the links
+  wrapped.
+- A "Required in every reply" block at the top of the preset names the mobile
+  menu and the `mock-data.json` proposal (three or more of the same component,
+  with its name and count). `SKILL.md` Step 6 and Step 7 name the block, and the
+  checklist lines are split so each states one fact.
+
+Tested (details in the README):
+- Two independent runs on page 1 of a design with 1440 and 390 px frames: both
+  built the menu and both proposed `mock-data.json`. Two runs, one design.
+
+Known limits:
+- Two runs are not statistics. The design that failed in 0.1.1 was not re-run.
+- Where the menu appears is the agent's choice (one run used 24rem, one 360 px).
+- The disallowed Bash call reported in 0.1.1 was not looked at in these runs and is not addressed here.
+
 ## 0.1.1
 
 Added:

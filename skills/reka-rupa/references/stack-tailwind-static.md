@@ -23,6 +23,20 @@ to follow the project (`code-quality.md`) or this preset; do not choose silently
   answer.
 - GSAP from a CDN, for scroll reveals and parallax only. Pin an exact version.
 
+## Required in every reply
+
+A reply without these two items is incomplete, even when the page is built.
+
+- **Mobile menu:** when the navigation links stop fitting at any width from
+  320 px up, the page has a disclosure menu for them (Rule 4) and the Questions
+  list says it was added and was not in the design. When the links fit at every
+  width, or the design has no link row, say that in the reply instead.
+- **`mock-data.json` proposal:** whenever the page has three or more of the
+  same card, row, logo or feature, the Questions list proposes a
+  `mock-data.json` shaped like the expected API response, naming the component
+  and how many times it repeats. Leaving it out because the page can be built
+  without it is not allowed.
+
 ## Rules
 
 1. **Styling.** No `style="..."` (`web-standards.md` Styles). A repeated element
@@ -33,16 +47,19 @@ to follow the project (`code-quality.md`) or this preset; do not choose silently
    class, never as copied utility strings. A one-off structural element takes
    utility classes directly.
 2. **Fidelity.** Replicate spacing, sizing, type and colour as measured from the
-   source. Do not add or guess layout.
+   source. Do not add or guess layout (the one exception is the Rule 4 menu,
+   reported as extrapolated).
 3. **Units.** `rem` (1 rem = 16 px). Prefer Tailwind's scale when it matches
    (`p-4`, `text-lg`); otherwise an arbitrary rem value (`p-[0.875rem]`).
 4. **Responsive.** Mobile-first; add `sm:`, `md:`, `lg:`, `xl:`, `2xl:` as the
    design needs.
    Navigation that the design shows as a row of links must stay reachable at
-   every width. When it no longer fits, never hide it without a replacement:
-   propose a disclosure menu (a button with `aria-expanded` and the same links)
-   in the Questions list, and until the user answers keep the links visible and
-   wrapped. Cropped images keep their subject in frame (`object-position`), and
+   every width. Below the width where the links stop fitting, build a
+   disclosure menu (a button with `aria-expanded` and `aria-controls`, the same
+   links, existing tokens only, a 2.75rem hit area) and show the row from that
+   width up. Never hide the links without it. The design does not show this
+   menu, so report it in the Questions list as extrapolated and let the user
+   reject it. Cropped images keep their subject in frame (`object-position`), and
    the difference is reported.
 5. **Interaction.** Hover, active and focus transitions on every interactive
    element (`design-craft.md` §9). CSS transitions that move an element carry
@@ -58,14 +75,9 @@ to follow the project (`code-quality.md`) or this preset; do not choose silently
    `loading="lazy"` goes on images below the first screen only, never on the hero
    (`web-standards.md` Loading).
 7. **Content.** No empty text block, list or table unless the design shows it
-   empty. Realistic mock data (`copy-and-mock.md`). A component that repeats (cards, rows, list items) gets a proposed
-   `mock-data.json`, shaped like the expected API response, created only after the
-   user agrees (`copy-and-mock.md`). Put that proposal in the Questions list of
-   the reply; do not leave it out because the page can be built without it. The Questions
-   list must contain this proposal whenever the page has a repeated component
-   (three or more of the same card, row, logo or feature); a reply without it
-   is incomplete.
-
+   empty. Realistic mock data (`copy-and-mock.md`). The `mock-data.json`
+   proposal is a required reply item (see "Required in every reply"); the file is created only
+   after the user agrees (`copy-and-mock.md`).
 8. **Touch targets.** Every link and control has a hit area of at least
    2.75rem x 2.75rem (`accessibility.md`), without changing the measured look:
    keep the drawn size and extend the hit area with padding the design does not
@@ -101,7 +113,8 @@ assets/          images, icons, SVGs in subfolders
 - [ ] No inline `style`; repeated elements abstracted once in `custom.css`
 - [ ] rem throughout; mobile-first breakpoints
 - [ ] Hover, active and focus states present; reduced motion honoured
-- [ ] Navigation reachable at every width; `mock-data.json` proposed for repeated components; counts taken from a listing
+- [ ] Navigation reachable at every width: a disclosure menu is in the markup and reported as extrapolated, or the reply says the links always fit
+- [ ] Counts taken from a listing
 - [ ] Links and controls have a 2.75rem hit area; the extension is reported
 - [ ] Assets under `assets/`; hero not lazy; below-fold images lazy
-- [ ] `mock-data.json` proposed, approved, and matches what the page shows
+- [ ] `mock-data.json` proposal is in the Questions list (component and count named); once approved, the file matches what the page shows
