@@ -8,7 +8,7 @@ Skill tool with this skill's name. Tools that change files or run commands are
 disallowed, so a run cannot touch anything.
 
 Usage:
-  python3 evals/run-triggers.py evals/triggers.json [--runs N] [--jobs N] [--model M]
+  python3 evals/run-triggers.py evals/triggers.json [--skill NAME] [--runs N] [--jobs N] [--model M]
 
 Triggers file: [{"query": "...", "trigger": true|false}, ...]
 Needs the `claude` CLI, logged in. Each run is a real, billed agent session.
@@ -27,10 +27,13 @@ DISALLOWED = ["Bash", "Edit", "Write", "NotebookEdit", "WebFetch", "WebSearch", 
 TIMEOUT_S = 180
 
 
-def find_skill_dir(repo: Path) -> Path:
+def find_skill_dir(repo: Path, name: str | None = None) -> Path:
     hits = sorted(repo.glob("skills/*/SKILL.md"))
+    if name:
+        hits = [h for h in hits if h.parent.name == name]
     if len(hits) != 1:
-        sys.exit(f"expected exactly one skills/*/SKILL.md under {repo}, found {len(hits)}")
+        sys.exit(f"expected exactly one matching skills/*/SKILL.md under {repo}, found {len(hits)}"
+                 + ("" if name else " (several skills here: pass --skill <name>)"))
     return hits[0].parent
 
 
@@ -82,11 +85,12 @@ def main() -> None:
     ap.add_argument("--runs", type=int, default=1)
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--model")
+    ap.add_argument("--skill", help="skill folder name, when the repository holds several")
     args = ap.parse_args()
 
     triggers_path = Path(args.triggers).resolve()
     repo = triggers_path.parent.parent
-    skill_dir = find_skill_dir(repo)
+    skill_dir = find_skill_dir(repo, args.skill)
     cases = json.loads(triggers_path.read_text())
 
     jobs = [(i, c) for i, c in enumerate(cases) for _ in range(args.runs)]

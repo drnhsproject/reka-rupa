@@ -86,5 +86,13 @@
  {
   "trigger": false,
   "query": "Rename the Button component's 'kind' prop to 'variant' across the codebase."
+ },
+ {
+  "trigger": true,
+  "query": "Slice this Figma design into a responsive web page: https://www.figma.com/design/AbC123/Landing-Page?node-id=1-2"
+ },
+ {
+  "trigger": true,
+  "query": "Slicing desain Figma ini jadi halaman web responsif dengan HTML dan Tailwind: https://www.figma.com/design/AbC123/Landing-Page?node-id=1-2"
  }
 ]
