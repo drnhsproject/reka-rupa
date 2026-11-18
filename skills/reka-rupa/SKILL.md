@@ -266,3 +266,9 @@ Load only what the current step needs.
 End each reply in the user's language with: what was done, what is
 awaiting approval (if a gate is open), differences from the source (if any),
 and the exact commands run with their real results (checks, scripts and anything that changes state; summarise plain reads). Omit what does not apply.
+
+Keep it short: the user must grasp the result at a glance, and many people read
+this reply. Lead with the outcome in one or two lines, then short bullets, one
+fact each. No retelling of the process, no repeated context, no filler. Required
+items (Questions, checklist lines, preset "Required in every reply") stay, but
+each in one line. Detail goes only where the user must decide or act.
