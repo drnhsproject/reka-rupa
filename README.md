@@ -42,6 +42,7 @@ front-end implementation.
 
 Flags: `--mode`, `--target=screen|component|flow`, `--source=tool|screenshot|none`,
 `--fidelity=sketch|spec|pixel`, `--design-system=<path|url|name|none>`,
+`--stack=project|tailwind-static`,
 `--a11y=strict|default`, `--scope=<path>`, `--no-save`.
 
 ## Design tools and design systems
@@ -106,7 +107,7 @@ npx skills add drnhsproject/reka-rupa --skill reka-rupa -g
 In a normal terminal the CLI detects the agents installed on your machine and
 lets you choose where to install; `-a <agent>` skips that choice (`-a '*'` for
 all). Checked on this repository: `--list` finds the skill, and
-`--skill reka-rupa -a claude-code` copies all files (11 at the time of that check, before design-systems.md was added) to
+`--skill reka-rupa -a claude-code` copies all files (11 at the time of that check, before design-systems.md and stack-tailwind-static.md were added) to
 `.claude/skills/reka-rupa/`, identical to this repository. Not checked: the
 interactive agent prompt, and agents other than Claude Code.
 
@@ -143,7 +144,7 @@ skills/reka-rupa/
   SKILL.md            flow, gates, modes, quality checklist
   references/         loaded on demand: project-adapter, design-systems, design-craft,
                       accessibility, responsive, copy-and-mock, code-quality,
-                      web-standards, fidelity-protocol
+                      web-standards, fidelity-protocol, stack-tailwind-static
   scripts/            contrast.py, pixeldiff.py
 ```
 
@@ -166,6 +167,18 @@ Tested, with a fresh agent following only the skill:
 - Design mode with FigCraft (local MCP server): one page built end to end
   (new file, about 200 layers, images and imported SVG icons, saved and
   exported). User-visible result, compared by eye; not measured.
+
+- Preset `--stack=tailwind-static`, one run from a generated screenshot of a
+  small page (no browser, so nothing was rendered or measured). It produced
+  `index.html` with no inline `style`, rem units, focus states and a question
+  about Tailwind delivery, but it did not abstract the repeated cards and focus
+  classes with `@apply` and did not propose `mock-data.json`. Treat the preset
+  as only partly followed.
+- Trigger queries: 24 queries run once each with a small model (haiku): 18
+  pass. Five of the six failures also fail with the previous description and
+  one (a component-card request) passed before and failed now, which a single
+  run cannot tell apart from noise. The two slice queries: one passes, one
+  (Indonesian) went to a different, installed Figma skill.
 
 Not tested:
 - Figma Console (community server), Claude Design and any other design-tool

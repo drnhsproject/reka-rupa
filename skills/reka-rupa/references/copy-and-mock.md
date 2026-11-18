@@ -40,6 +40,9 @@ Mock data lets a design and a build look real before the backend does.
 
 - Reuse the project's mock layer, shapes and field names. Never invent a
   parallel system.
+- When the project has no mock layer and the page repeats components (cards,
+  rows, list items), propose a `mock-data.json` shaped like the expected API
+  response, and create it only after the user agrees.
 - Make it realistic: believable names, places, dates, quantities and
   durations in the project's locale; varied lengths (short, long, missing);
   plausible ranges; no repeating patterns such as 10, 20, 30.

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Adopted the universal rules of an external Figma-slicing skill: no static inline `style`, mobile-first styles, hover/active/focus feedback, and a `mock-data.json` proposal when a project has no mock layer. Added the opt-in `--stack=tailwind-static` preset (Tailwind `@apply`, GSAP, `assets/`) in `references/stack-tailwind-static.md`. Docs only; not run against a real design. The description now mentions slicing, and `evals/triggers.json` has two slice queries that passed once each (2/2, one run); the other 22 queries were not re-run.
+
 Added `references/design-systems.md` and the `--design-system=` flag: a design
 system the user gives outranks the project's tokens, conflicts and gaps are
 reported, and design-tool servers are handled by capability rather than by
