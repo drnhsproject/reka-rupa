@@ -187,6 +187,19 @@ Tested, with a fresh agent following only the skill:
   preset only partly (repeated classes left inline, no `mock-data.json`
   proposal), so give the agent a structured source or a clear screenshot and
   read its Questions list.
+- Preset on a larger design: a 1440 x 2691 px landing page built in FigCraft
+  (hero, tabs, 13 icon cards, 12 client logos, illustrations, footer), one run.
+  The agent exported its own assets (44 files, all referenced, none missing),
+  gave every image an `alt` and dimensions, used no inline `style` and no px
+  values, and reported the design's low button contrast (about 1.6:1 and 2.5:1)
+  instead of fixing it silently. Rendered in headless Chrome and compared with
+  the design's PNG: 6.1% of pixels differ at 1440 px, mostly text and a drift of
+  about 10 px downward from the hero onward; the layout is otherwise the same.
+  Gaps found: below desktop width the main navigation disappears with no menu
+  replacement, the hero illustration is cropped at 320 px, 29 links are left as
+  `href="#"` (reported), no `mock-data.json` proposal was made for the repeated
+  cards, and the agent's file count (50) did not match the folder (44). Widths
+  between 320 and 1440 were not compared with a design.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single
@@ -205,7 +218,7 @@ Not tested:
   code from it, compared pixel by pixel).
 - Fidelity for icons, photos, shadows, web fonts and interactive states.
 - Native mobile projects.
-- Larger screens than a single list page.
+- Pages much larger than the one above, real client sites, and pages with forms that submit or scripts beyond a reveal.
 
 The test sources and measurements were produced in a controlled setup (same
 machine, system fonts); real-world screenshots will differ.
