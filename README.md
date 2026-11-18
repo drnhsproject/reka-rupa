@@ -173,7 +173,11 @@ Tested, with a fresh agent following only the skill:
   `index.html` with no inline `style`, rem units, focus states and a question
   about Tailwind delivery, but it did not abstract the repeated cards and focus
   classes with `@apply` and did not propose `mock-data.json`. Treat the preset
-  as only partly followed.
+  as only partly followed. After the rules for repeated elements and the
+  `mock-data.json` proposal were made stricter, a second run (same screenshot)
+  again left the repeated focus-ring classes inline and again did not propose
+  `mock-data.json`; it did produce a `text/tailwindcss` block with theme colours.
+  The stricter wording is not shown to change that behaviour.
 - Trigger queries: 24 queries run once each with a small model (haiku): 18
   pass. Five of the six failures also fail with the previous description and
   one (a component-card request) passed before and failed now, which a single

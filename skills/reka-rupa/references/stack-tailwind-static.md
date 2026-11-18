@@ -17,15 +17,21 @@ to follow the project (`code-quality.md`) or this preset; do not choose silently
   method before building: the Tailwind CLI producing a stylesheet that
   `index.html` links, or the Play CDN with the `@apply` rules inside a
   `<style type="text/tailwindcss">` block (then `custom.css` is not linked).
-  Ask the user which, and pin an exact Tailwind version like GSAP.
+  Ask the user which, and pin an exact Tailwind version like GSAP. When the
+  answer cannot be waited for (no way to ask), state the assumption, build with
+  the Play CDN, and still apply Rule 1: the abstraction does not depend on the
+  answer.
 - GSAP from a CDN, for scroll reveals and parallax only. Pin an exact version.
 
 ## Rules
 
 1. **Styling.** No `style="..."` (`web-standards.md` Styles). A repeated element
    (button, card, form field) becomes one class built with `@apply` in a single
-   `custom.css` (or the `text/tailwindcss` block, per Stack). A one-off
-   structural element takes utility classes directly.
+   `custom.css` (or the `text/tailwindcss` block, per Stack). A class
+   or control that appears three or more times (the same card, or the same
+   focus-ring utilities on every link) is repeated: write it once as a named
+   class, never as copied utility strings. A one-off structural element takes
+   utility classes directly.
 2. **Fidelity.** Replicate spacing, sizing, type and colour as measured from the
    source. Do not add or guess layout.
 3. **Units.** `rem` (1 rem = 16 px). Prefer Tailwind's scale when it matches
@@ -46,9 +52,10 @@ to follow the project (`code-quality.md`) or this preset; do not choose silently
    `loading="lazy"` goes on images below the first screen only, never on the hero
    (`web-standards.md` Loading).
 7. **Content.** No empty text block, list or table unless the design shows it
-   empty. Realistic mock data (`copy-and-mock.md`). Repeating components get a proposed
+   empty. Realistic mock data (`copy-and-mock.md`). A component that repeats (cards, rows, list items) gets a proposed
    `mock-data.json`, shaped like the expected API response, created only after the
-   user agrees (`copy-and-mock.md`).
+   user agrees (`copy-and-mock.md`). Put that proposal in the Questions list of
+   the reply; do not leave it out because the page can be built without it.
 
 ## Output
 
