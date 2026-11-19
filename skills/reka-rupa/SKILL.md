@@ -59,14 +59,15 @@ Report a clash once, with its trade-off. A script FAIL that level 3 or 4 forces 
 
 **2 Brief.** Skip for `--mode=code` with a source. Verify before asking. Ask only what code and source cannot answer: at most four questions, recommended first, each with its consequence. If an existing component overlaps, ask: extend or new. Questions found while designing go to the gate, uncounted. Report-only items (token gaps, unknown behaviour, extrapolated widths, preset items) go under "Questions" after the adapter report, grouped by cause, uncapped.
 
-**2b Size gate ⛔.** More than one screen, more than six components, or more than one flow: list parts (name and outcome, one line each) and get an OK naming the state file `.agents/reka-rupa/parts.json` (a `--scope` that excludes `.agents/` needs its own OK). Then:
-- `python3 scripts/parts.py add "<name> | <outcome>"` for each part (with `--no-save`, keep the list in the reply).
-- Run Steps 3 to 7 per part, each with its own gate, then `parts.py done <n>`.
-- A new session starts with `parts.py next`.
+**2b Size gate ⛔.** More than one screen, more than six components, or more than one flow, or a build in a design tool that looks heavy (several frames or widths, about 60+ layers, a backdrop with page context): list parts (name and outcome, one line each) and get an OK naming the plans folder `.agents/plans/design/` (a `--scope` that excludes `.agents/` needs its own OK). Then:
+- Save each part as a plan file (`references/plan-format.md`, same format as `smart-plan`); with `--no-save`, keep the list in the reply.
+- Run Steps 3 to 7 per part, each with its own gate, then set that plan to `Status: DONE`.
+- A new session starts with `python3 scripts/parts.py next`; the plan files are the only record.
+- In a design tool, one part = one frame at one width, run alone (`design-systems.md` §4, heavy builds).
 
 **3 Direction ⛔.** Skip for `--mode=code` with a source, or when the source fixes the direction. One-line read: "Reading this as: `<screen kind>` for `<audience>`, `<visual language>`, energy `<calm|balanced|bold>`, rhythm `<uniform|varied>`, motion `<none|subtle|expressive>`." Then one direction (palette from existing tokens, hierarchy, focal point, composition) and one rejected alternative in a line. For `--target=component`, Steps 3 and 5 merge into one gate after the design is shown, carrying the read, the design and open questions (a rejected alternative only for a real fork).
 
-**4 Design.** Skip for `--mode=code`. Load `design-craft.md`. Build in the connected tool, or a text spec (`design-craft.md` §12) with `--source=none`. Show every state (default, loading, empty, error; disabled, selected, focused where relevant) with realistic mock data. Run the checklist; screenshot and inspect each target width (no tool: say so, describe the layout per width).
+**4 Design.** Skip for `--mode=code`. Load `design-craft.md`. Build in the connected tool, or a text spec (`design-craft.md` §12) with `--source=none`. Show every state (default, loading, empty, error; disabled, selected, focused where relevant) with realistic mock data. Run the checklist; screenshot and inspect each target width, and name every element you claim present by node id, read back (no tool: say so, describe the layout per width).
 
 **5 Design review ⛔.** Show it and wait. Revisions return to Step 4. A "looks fine" about something else is not a go.
 
@@ -98,6 +99,7 @@ Load only what the step needs.
 - `references/code-quality.md`: Step 6
 - `references/web-standards.md`: web target
 - `references/stack-tailwind-static.md`: `--stack=tailwind-static`
+- `references/plan-format.md`: Step 2b, saving parts
 - `references/design-systems.md`: design system or tool in play
 - `references/fidelity-protocol.md`: adopting a design (`scripts/pixeldiff.py`)
 - `references/review.md`: `--mode=review`; follow it instead of Steps 2 to 7

@@ -1,22 +1,18 @@
 #!/usr/bin/env python3
-"""Track the parts of a big request so a new session can carry on.
+"""List the parts of a split design request, read from the plan files themselves.
 
 Usage:
-  parts.py add "<name> | <outcome>"     append a part
-  parts.py list                          show all parts, [x] done, [ ] open
-  parts.py next                          print the first open part, or ALL DONE
-  parts.py done <n>                      mark part n done
-Option --file <path> (before the command) sets the state file;
-default .agents/reka-rupa/parts.json. Bad input prints: FAIL ... | FIX: ...
+  parts.py list [--series <name>]   every part: [x] DONE, [ ] open, with its status
+  parts.py next [--series <name>]   the first part not DONE, or ALL DONE
+Option --dir <path> (before the command) sets the plans folder; default
+.agents/plans/design. The plan files are the only record: mark a part finished by
+setting its header to `Status: DONE`. Bad input prints: FAIL ... | FIX: ...
 """
-import json
-import os
 import re
 import sys
 from pathlib import Path
 
-DEFAULT = ".agents/reka-rupa/parts.json"
-USAGE = 'parts.py [--file <path>] add "<name> | <outcome>" | list | next | done <n>'
+USAGE = "parts.py [--dir <path>] list|next [--series <name>]"
 
 
 def die(what: str, fix: str = USAGE) -> int:
@@ -24,66 +20,61 @@ def die(what: str, fix: str = USAGE) -> int:
     return 1
 
 
+def read_parts(folder: Path, series: str | None) -> list[tuple]:
+    found = []
+    skipped = []
+    for f in sorted(folder.rglob("*.md")):
+        head = f.read_text(encoding="utf-8", errors="replace")[:1500]
+        part = re.search(r"^.*\bPart:\s*(\d+)\s+of\s+(\d+)", head, re.M)
+        name = re.search(r"Series:\s*([\w.-]+)", head)
+        status = re.search(r"^Status:\s*([A-Z ]+?)\s*(?:·|$)", head, re.M)
+        title = re.search(r"^# Plan:\s*(.+)$", head, re.M)
+        if not (part and name and status):
+            if re.search(r"^Status:", head, re.M) or "Part:" in head:
+                skipped.append(f)
+            continue
+        if series and name.group(1) != series:
+            continue
+        found.append((name.group(1), int(part.group(1)), int(part.group(2)), status.group(1), title.group(1) if title else f.stem, f))
+    for f in skipped:
+        print(f"WARN {f} | header unreadable (need Status:, Part: n of m, Series:) | FIX: correct the header", file=sys.stderr)
+    return sorted(found, key=lambda x: (x[0], x[1]))
+
+
 def run() -> int:
     argv = sys.argv[1:]
-    path = Path(DEFAULT)
-    if argv[:1] == ["--file"]:
+    folder = Path(".agents/plans/design")
+    if argv[:1] == ["--dir"]:
         if len(argv) < 2:
-            return die("--file needs a path")
-        path, argv = Path(argv[1]), argv[2:]
-    if not argv:
-        return die("no command")
-    cmd, rest = argv[0], argv[1:]
-    try:
-        parts = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else []
-    except (OSError, ValueError):
-        return die(f"{path} is not valid JSON", f"fix or delete {path}")
-    if not isinstance(parts, list) or not all(
-        isinstance(p, dict) and {"name", "outcome", "done"} <= p.keys() and isinstance(p["done"], bool)
-        for p in parts
-    ):
-        return die(f"{path} is not a list of parts", f"fix or delete {path}")
-
-    def save() -> None:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_name(path.name + ".tmp")
-        tmp.write_text(json.dumps(parts, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        os.replace(tmp, path)
-
-    if cmd == "add":
-        if len(rest) != 1 or "|" not in rest[0]:
-            return die('add needs one quoted text "<name> | <outcome>"')
-        name, outcome = (s.strip() for s in rest[0].split("|", 1))
-        if not name or not outcome:
-            return die("name and outcome must both be filled")
-        parts.append({"name": name, "outcome": outcome, "done": False})
-        save()
-        print(f"ADDED {len(parts)} | {name}")
-    elif cmd == "list":
-        for i, p in enumerate(parts, 1):
-            print(f"[{'x' if p['done'] else ' '}] {i} {p['name']} | {p['outcome']}")
-        if not parts:
-            print("NO PARTS")
-    elif cmd == "next":
-        for i, p in enumerate(parts, 1):
-            if not p["done"]:
-                print(f"NEXT {i} {p['name']} | {p['outcome']}")
+            return die("--dir needs a path")
+        folder, argv = Path(argv[1]), argv[2:]
+    if not argv or argv[0] not in ("list", "next"):
+        return die("need the command list or next")
+    series = None
+    if argv[1:2] == ["--series"]:
+        if len(argv) < 3:
+            return die("--series needs a name")
+        series = argv[2]
+    elif len(argv) > 1:
+        return die(f"unexpected '{argv[1]}'")
+    if not folder.is_dir():
+        print("NO PARTS")
+        return 0
+    parts = read_parts(folder, series)
+    if not parts:
+        print("NO PARTS")
+    elif argv[0] == "list":
+        for s, n, m, st, title, f in parts:
+            print(f"[{'x' if st == 'DONE' else ' '}] {s} {n}/{m} {st} | {title} | {f}")
+    else:
+        for s, n, m, st, title, f in parts:
+            if st != "DONE":
+                print(f"NEXT {s} {n}/{m} {st} | {title} | {f}")
                 break
         else:
-            print("ALL DONE" if parts else "NO PARTS")
-    elif cmd == "done":
-        if len(rest) != 1 or not re.fullmatch(r"[0-9]+", rest[0]) or not 1 <= int(rest[0]) <= len(parts):
-            return die(f"done needs a part number from 1 to {len(parts)}")
-        parts[int(rest[0]) - 1]["done"] = True
-        save()
-        print(f"DONE {rest[0]}")
-    else:
-        return die(f"unknown command '{cmd}'")
+            print("ALL DONE")
     return 0
 
 
 if __name__ == "__main__":
-    try:
-        sys.exit(run())
-    except OSError as e:
-        sys.exit(die(f"cannot write the state file ({e.strerror})", "check the folder permissions or pass --file <path>"))
+    sys.exit(run())

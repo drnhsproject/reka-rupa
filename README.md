@@ -171,8 +171,9 @@ design source forces is reported in the differences table, not fixed (Precedence
   images without alt or size, a lazy first image, `href="#"`, one `<h1>` and `<title>`, raw colours.
 - `check-reply.py <file> [--source] [--stack tailwind-static]`: the final reply carries the adapter
   lines, the differences table and the preset's required items. It checks presence, not correctness.
-- `parts.py add|list|next|done`: a request with more than one screen, six components or one flow
-  is split into parts; a new session continues with `parts.py next`.
+- `parts.py list|next`: a request with more than one screen, six components, one flow or a heavy
+  design-tool build is split into parts, each saved as a `smart-plan`-format plan under
+  `.agents/plans/design/`; a new session continues with `parts.py next`. The plan files are the only record.
 - `check-skill.py <skill folder> [--strict] [--load]`: for editors. `--load` shows the words a run
   loads, now and before 0.2.0 (design 4,903 / 6,048; code 5,462 / 6,607; adopt a design
   7,680 / 8,825; adopt with the preset 8,769 / 9,914; review 6,339 / 7,017). The reference files were
@@ -186,7 +187,7 @@ Suggestions, not a benchmark; the steps are written so that either kind can foll
   (Step 3), the design review (Step 5), review mode, and a design adopted from a source that must be
   measured and compared.
 - An ordinary model is enough for the adapter (Step 1), the code of an approved design (Step 6), the
-  Step 7 scripts and their fixes, and splitting a big request with `parts.py`.
+  Step 7 scripts and their fixes, and splitting a big request into plan files read by `parts.py`.
 - Either way, the scripts and the Checklist do the checking, and QA of the result is a separate step.
 
 ## What has and has not been tested
