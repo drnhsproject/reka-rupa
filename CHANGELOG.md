@@ -1,5 +1,69 @@
 # Changelog
 
+## 0.2.0
+
+Goal: a skill that is light on tokens and works the same on a strong and on an ordinary model,
+without losing the design and code rules. Method: shorter `SKILL.md`, one order for clashing
+rules, mechanical checks moved into scripts with plain failure lines, big requests split into parts.
+The reference files were deliberately kept whole: their lines carry subtle rules.
+
+Changed:
+- `SKILL.md` went from 2,434 to 1,289 words (-47%). The 8 non-negotiables, 9 flags and the gates are kept.
+- One **Precedence** block decides every clash: the user's words and flags, the stop-and-ask
+  list, the project's rules, the design source, then this skill's defaults. Gates are never
+  skipped at any level. The per-file "Conflicts" notes and the adoption rule now point to it.
+- One checklist of 8 lines, with one tie-break: an item the source does not show is answered
+  `no, because the source` and reported.
+- Review mode moved to `references/review.md`, loaded only with `--mode=review`.
+- The front-matter `description`, loaded in every session, went from 110 to 69 words; all nine
+  trigger phrases are kept.
+- The size gate (Step 2b): more than one screen, six components or one flow is split into parts,
+  each with its own gate, tracked in `.agents/reka-rupa/parts.json`.
+- Step 7 runs the scripts below and reruns until `OK`. A failure that the project or the source
+  forces goes in the differences table.
+- References: two stale "Hard stops" citations now say "Stop and ask"; three files point to
+  Precedence. Three lines added, two replaced, none removed.
+
+Added (all Python 3, standard library only; every failure line reads
+`FAIL <file>:<line> | <what is wrong> | FIX: <what to do>`, last line `OK` or `FAILED n`):
+- `scripts/check-web.py`: inline `style`, px in layout and media queries, `<img>` without
+  alt, width or height, a lazy first image, `href="#"`, not exactly one `<h1>` or `<title>`,
+  raw colours (`--tokens <file>` skips the token file), files over 2 MB.
+- `scripts/check-reply.py`: the final reply carries the adapter lines, the differences table
+  and, with `--stack tailwind-static`, the mock-data and mobile-menu items; English or
+  Indonesian labels. It proves presence, not correctness.
+- `scripts/parts.py`: `add`, `list`, `next`, `done`, so a new session continues a split request.
+- `scripts/check-skill.py`: a growth guard for the skill's own files (`--strict`) and a load
+  report (`--load`).
+- `evals/fixtures/` with good and bad examples for each checker; 4 more trigger queries (28).
+
+Measured (`check-skill.py --load`, words loaded per kind of run, now / before):
+- design 4,903 / 6,048 (-19%); code 5,462 / 6,607 (-17%); adopt a design 7,680 / 8,825 (-13%);
+  adopt with the preset 8,769 / 9,914 (-12%); review 6,339 / 7,017 (-10%).
+- The folder as a whole is not smaller (references 8,482 words, `review.md` 467): the saving is
+  per run, not in total.
+
+Tested:
+- Each script on its fixtures and on hostile input (the slowest case now ends in under 1 s).
+- Trigger evals, haiku, one run per query, 28 queries: 18 pass with the new 69-word description
+  (15 of the 24 old queries). The same run with the 0.1.2 description of 110 words, on the same
+  day: also 18 of 28 (14 of 24). Four queries flipped, two each way, so the shorter description
+  shows no measurable loss. The 18 of 24 recorded for 0.1.2 did not repeat today, even with its
+  own description: one run per query is noisy and other installed skills compete for the same
+  queries. The misses are cases where the model explored with `Glob` or `Grep` instead of
+  calling the skill; the 11 queries that must not trigger all passed.
+- Parts 1 to 3 each had an independent review, and QA rounds followed: 29 issues in the scripts
+  and in `SKILL.md` were found and fixed before this release (false positives such as
+  `hsl(var(--x))`, English-only reply labels, quadratic regexes, a lost rule in Step 7).
+
+Known limits:
+- Design runs with a small model (the menu and `mock-data.json` bar of 0.1.2, 3 of 3 runs on the
+  largest design) were not repeated for 0.2.0; until they are, `check-reply.py` is the only guard for
+  those two items. The trigger evals are one run per query, not statistics.
+- `check-web.py` does not read SVG attributes or a comment that spans lines between a selector
+  and its brace. `check-reply.py` accepts any table of 5 or more columns.
+- The scripts need Python 3; without it the steps are done by hand and said so.
+
 ## 0.1.2
 
 Changed:

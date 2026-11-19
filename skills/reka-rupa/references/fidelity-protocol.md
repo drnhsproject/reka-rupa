@@ -122,6 +122,7 @@ error states, behaviour for a control whose action is unknown, tests when the
 project has none. Keep the source element, do not invent behaviour, and list
 each such checklist answer as "no, because the source" in the differences
 table. Do not answer "yes" to make the checklist green.
+The Checklist and Precedence in `SKILL.md` apply this rule; the answer "no, because the source" goes in the differences table.
 
 ## 7. Do not
 

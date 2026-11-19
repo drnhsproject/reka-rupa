@@ -92,7 +92,7 @@ Rules that apply to any server:
   cannot read the design system, ask for tokens another way (a file, pasted
   values, a screenshot labelled estimated).
 - Confirm the target file or frame before writing, and write only inside it
-  (`SKILL.md`, non-negotiable 8 and Hard stops).
+  (`SKILL.md`, non-negotiable 8 and Stop and ask).
 - After writing, read the result back (a screenshot or node read) and inspect
   it yourself before showing it.
 - A failing or partial tool call is reported with what succeeded and what did

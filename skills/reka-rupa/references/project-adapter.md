@@ -76,3 +76,4 @@ after these two.
 Project rules outrank this skill's taste. If a project rule produces a
 weaker design, follow the rule and mention the trade-off once; do not
 quietly work around it.
+Order of precedence: see Precedence in `SKILL.md`.
