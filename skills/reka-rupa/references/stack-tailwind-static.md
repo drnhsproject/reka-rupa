@@ -5,7 +5,7 @@ built from a design, for projects that have no front-end conventions of their
 own. Passing the flag is the user's approval for Tailwind CSS and GSAP, and
 nothing else: it does not approve a new colour, font or token, and a value
 the source shows that the project lacks is proposed first (`design-craft.md` §3,
-Hard stops). When the project already has a stack, say so and ask whether
+Stop and ask in `SKILL.md`). When the project already has a stack, say so and ask whether
 to follow the project (`code-quality.md`) or this preset; do not choose silently. Everything in
 `web-standards.md`, `accessibility.md` and `fidelity-protocol.md` still applies.
 

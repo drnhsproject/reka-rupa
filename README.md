@@ -134,6 +134,8 @@ None for the skill itself. Optional helpers in `skills/reka-rupa/scripts/`:
 
 - `contrast.py`: Python 3 only (WCAG contrast, with alpha blending).
 - `pixeldiff.py`: Python 3, Pillow and numpy (per-region screenshot diff).
+- `check-web.py`, `check-reply.py`, `parts.py`: Python 3 only (see "Scripts").
+- `check-skill.py`: Python 3 only; for people who edit this skill (size guard, load report).
 - A design-tool server (for example Figma) is optional and only needed for
   design mode with a live source.
 
@@ -141,16 +143,60 @@ None for the skill itself. Optional helpers in `skills/reka-rupa/scripts/`:
 
 ```
 skills/reka-rupa/
-  SKILL.md            flow, gates, modes, quality checklist
-  references/         loaded on demand: project-adapter, design-systems, design-craft,
-                      accessibility, responsive, copy-and-mock, code-quality,
-                      web-standards, fidelity-protocol, stack-tailwind-static
-  scripts/            contrast.py, pixeldiff.py
+  SKILL.md            flow, gates, precedence, checklist (about 1,300 words)
+  references/         loaded on demand:
+                      project-adapter.md, design-systems.md, design-craft.md,
+                      accessibility.md, responsive.md, copy-and-mock.md, code-quality.md,
+                      web-standards.md, fidelity-protocol.md, stack-tailwind-static.md,
+                      review.md (only with --mode=review)
+  scripts/            contrast.py, pixeldiff.py, check-web.py, check-reply.py,
+                      parts.py, check-skill.py
+evals/                run-triggers.py, triggers.json (28 queries), fixtures/ (examples
+                      each checker must pass or fail)
 ```
+
+## Scripts
+
+What can be checked by a program is checked by a program, so a smaller model does not have to
+remember it. Every failure line says where, what and how to fix it, in plain words:
+
+```
+FAIL index.html:17 | 'w-[350px]' uses px | FIX: use [21.875rem] or a Tailwind scale class
+```
+
+Fix by the `FIX` text and rerun until the last line is `OK`. A failure that the project or the
+design source forces is reported in the differences table, not fixed (Precedence in `SKILL.md`).
+
+- `check-web.py <folder> [--tokens <file>]`: inline `style`, px in layout and media queries,
+  images without alt or size, a lazy first image, `href="#"`, one `<h1>` and `<title>`, raw colours.
+- `check-reply.py <file> [--source] [--stack tailwind-static]`: the final reply carries the adapter
+  lines, the differences table and the preset's required items. It checks presence, not correctness.
+- `parts.py add|list|next|done`: a request with more than one screen, six components or one flow
+  is split into parts; a new session continues with `parts.py next`.
+- `check-skill.py <skill folder> [--strict] [--load]`: for editors. `--load` shows the words a run
+  loads, now and before 0.2.0 (design 4,903 / 6,048; code 5,462 / 6,607; adopt a design
+  7,680 / 8,825; adopt with the preset 8,769 / 9,914; review 6,339 / 7,017). The reference files were
+  kept whole on purpose, so the saving is per run, about 10 to 19%, not in the size of the folder.
+
+## Which model for which step
+
+Suggestions, not a benchmark; the steps are written so that either kind can follow them.
+
+- A stronger model pays off where judgement decides the result: the one-line read and direction
+  (Step 3), the design review (Step 5), review mode, and a design adopted from a source that must be
+  measured and compared.
+- An ordinary model is enough for the adapter (Step 1), the code of an approved design (Step 6), the
+  Step 7 scripts and their fixes, and splitting a big request with `parts.py`.
+- Either way, the scripts and the Checklist do the checking, and QA of the result is a separate step.
 
 ## What has and has not been tested
 
 Be aware of the limits before relying on it.
+
+0.2.0 (size and scripts, not the quality of the designs): the scripts were run on fixtures and on
+hostile input, and each part had an independent review and QA rounds. Trigger evals with the shorter
+description: 18 of 28 queries pass, the same as with the old description (details in `CHANGELOG.md`).
+Design runs with a small model were not repeated for 0.2.0.
 
 Tested, with a fresh agent following only the skill:
 - Review mode on two real projects (a Vite admin app and a Next.js portfolio),

@@ -116,3 +116,4 @@ Signals to look for:
 A project rule that contradicts a default here wins; report the trade-off once.
 Examples: a px-based design system, a CMS that controls the markup, an email
 template where `rem` and modern attributes are unsupported.
+Order of precedence: see Precedence in `SKILL.md`.

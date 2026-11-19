@@ -94,5 +94,21 @@
  {
   "trigger": true,
   "query": "Slicing desain Figma ini jadi halaman web responsif dengan HTML dan Tailwind: https://www.figma.com/design/AbC123/Landing-Page?node-id=1-2"
+ },
+ {
+  "trigger": true,
+  "query": "Slice lima halaman desain ini (beranda, produk, keranjang, checkout, akun) menjadi HTML dan Tailwind, mulai dari beranda."
+ },
+ {
+  "trigger": true,
+  "query": "Turn these five pages from our design file into responsive HTML pages, one page at a time, starting with the homepage."
+ },
+ {
+  "trigger": false,
+  "query": "Buat migrasi database untuk menambah kolom status pada tabel orders dan isi data lamanya."
+ },
+ {
+  "trigger": false,
+  "query": "Export last month's sales to a CSV and calculate the average order value per customer."
  }
 ]
