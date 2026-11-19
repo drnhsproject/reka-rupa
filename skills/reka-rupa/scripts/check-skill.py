@@ -15,8 +15,9 @@ from pathlib import Path
 
 OLD_SKILL_WORDS = 2434  # SKILL.md before review mode moved out and the text was cut
 BUDGET = {
-    "SKILL.md": 1340,
+    "SKILL.md": 1385,
     "references/review.md": 470,
+    "references/plan-format.md": 400,
     "references/accessibility.md": 904,
     "references/code-quality.md": 570,
     "references/copy-and-mock.md": 556,

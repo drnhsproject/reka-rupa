@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Size gate (Step 2b) also splits a heavy design-tool build (several frames, about 60+ layers),
+  one frame per part, with small checked batches and a save per part (`design-systems.md` §4).
+- Each part is saved as a plan in the `smart-plan` format under `.agents/plans/design/`
+  (`references/plan-format.md`). `scripts/parts.py` now only reads those files (`list`, `next`);
+  the plan header `Status: DONE` is the single record, so `add` and `done` and `parts.json` are gone.
+
 ## 0.2.0
 
 Goal: a skill that is light on tokens and works the same on a strong and on an ordinary model,

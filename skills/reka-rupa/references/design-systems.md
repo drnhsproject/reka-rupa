@@ -110,6 +110,8 @@ Rules that apply to any server:
 
 Facts learned in the FigCraft run: missing fonts render with a fallback and drop their weight, and font download is switched on only by the user; very large command batches are better sent from a script than pasted into chat; vector icons can be taken from the source page's inline SVG and imported.
 
+Heavy builds: one frame per part (Step 2b), batches of about 8 steps read back each time, save at the end, three screenshots maximum; same error twice: stop, report.
+
 Update this table only after a real run, with the evidence.
 
 ## 5. Report
