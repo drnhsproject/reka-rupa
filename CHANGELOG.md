@@ -1,12 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.2.1
 
 - Size gate (Step 2b) also splits a heavy design-tool build (several frames, about 60+ layers),
   one frame per part, with small checked batches and a save per part (`design-systems.md` §4).
 - Each part is saved as a plan in the `smart-plan` format under `.agents/plans/design/`
   (`references/plan-format.md`). `scripts/parts.py` now only reads those files (`list`, `next`);
   the plan header `Status: DONE` is the single record, so `add` and `done` and `parts.json` are gone.
+- Plan template shortened (Status, Part/Series, Context, Tasks with `Verify`, Execution log);
+  `parts.py` warns on stderr about a plan whose header it cannot read instead of skipping it silently.
 
 ## 0.2.0
 
