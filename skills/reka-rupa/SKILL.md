@@ -6,7 +6,7 @@ license: MIT
 compatibility: Scripts need Python 3 (pixeldiff.py also Pillow and numpy). A design-tool server such as Figma is optional.
 metadata:
   author: "drnhsproject"
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 # reka-rupa
 

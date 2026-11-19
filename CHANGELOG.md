@@ -1,6 +1,11 @@
 # Changelog
 
-## 0.2.1
+## 0.2.2
+
+Tag `v0.2.1` was cut one commit too early (the files still said 0.2.0), so this release
+replaces it. Use `v0.2.2`.
+
+Changes:
 
 - Size gate (Step 2b) also splits a heavy design-tool build (several frames, about 60+ layers),
   one frame per part, with small checked batches and a save per part (`design-systems.md` §4).
