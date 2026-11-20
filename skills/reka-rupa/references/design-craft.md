@@ -110,6 +110,8 @@ Design all of them, not just the happy path:
 - Everything aligns to a grid or a shared edge; optical alignment is
   checked, not assumed.
 - Consistent padding inside similar containers; consistent icon sizes.
+- Cards in one row share one shape: equal height, each part at the same y.
+  Size text blocks to the longest, or pin the action to the bottom.
 - Names for layers, frames and components in the design file are
   meaningful, and reusable parts are components, not copies.
 
