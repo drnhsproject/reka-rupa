@@ -23,6 +23,7 @@ BUDGET = {
     "references/copy-and-mock.md": 556,
     "references/design-craft.md": 1032,
     "references/design-systems.md": 1096,
+    "references/micro-interactions.md": 612,
     "references/fidelity-protocol.md": 1161,
     "references/project-adapter.md": 615,
     "references/responsive.md": 650,
@@ -32,11 +33,11 @@ BUDGET = {
 UNIQUE = ["Required in every reply"]
 _COMMON = ["project-adapter", "accessibility", "responsive", "copy-and-mock"]
 LOADS = {  # a run always loads SKILL.md plus these references
-    "design": _COMMON + ["design-craft"],
-    "code": _COMMON + ["code-quality", "web-standards"],
-    "adopt": _COMMON + ["code-quality", "web-standards", "fidelity-protocol", "design-systems"],
-    "adopt-preset": _COMMON + ["code-quality", "web-standards", "fidelity-protocol", "design-systems", "stack-tailwind-static"],
-    "review": ["review", "accessibility", "responsive", "code-quality", "copy-and-mock", "web-standards", "design-craft"],
+    "design": _COMMON + ["design-craft", "micro-interactions"],
+    "code": _COMMON + ["code-quality", "micro-interactions", "web-standards"],
+    "adopt": _COMMON + ["code-quality", "micro-interactions", "web-standards", "fidelity-protocol", "design-systems"],
+    "adopt-preset": _COMMON + ["code-quality", "micro-interactions", "web-standards", "fidelity-protocol", "design-systems", "stack-tailwind-static"],
+    "review": ["review", "accessibility", "responsive", "code-quality", "copy-and-mock", "web-standards", "design-craft", "micro-interactions"],
 }
 
 

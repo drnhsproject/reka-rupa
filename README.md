@@ -145,7 +145,7 @@ None for the skill itself. Optional helpers in `skills/reka-rupa/scripts/`:
 skills/reka-rupa/
   SKILL.md            flow, gates, precedence, checklist (about 1,300 words)
   references/         loaded on demand:
-                      project-adapter.md, design-systems.md, design-craft.md,
+                      project-adapter.md, design-systems.md, design-craft.md, micro-interactions.md,
                       accessibility.md, responsive.md, copy-and-mock.md, code-quality.md,
                       web-standards.md, fidelity-protocol.md, stack-tailwind-static.md,
                       review.md (only with --mode=review)
@@ -168,7 +168,8 @@ Fix by the `FIX` text and rerun until the last line is `OK`. A failure that the 
 design source forces is reported in the differences table, not fixed (Precedence in `SKILL.md`).
 
 - `check-web.py <folder> [--tokens <file>]`: inline `style`, px in layout and media queries,
-  images without alt or size, a lazy first image, `href="#"`, one `<h1>` and `<title>`, raw colours.
+  images without alt or size, a lazy first image, `href="#"`, one `<h1>` and `<title>`, raw colours,
+  and motion: `transition: all`, animated layout properties, animation with no reduced-motion guard.
 - `check-reply.py <file> [--source] [--stack tailwind-static]`: the final reply carries the adapter
   lines, the differences table and the preset's required items. It checks presence, not correctness.
 - `parts.py list|next`: a request with more than one screen, six components, one flow or a heavy

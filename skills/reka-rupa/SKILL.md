@@ -67,11 +67,11 @@ Report a clash once, with its trade-off. A script FAIL that level 3 or 4 forces 
 
 **3 Direction ⛔.** Skip for `--mode=code` with a source, or when the source fixes the direction. One-line read: "Reading this as: `<screen kind>` for `<audience>`, `<visual language>`, energy `<calm|balanced|bold>`, rhythm `<uniform|varied>`, motion `<none|subtle|expressive>`." Then one direction (palette from existing tokens, hierarchy, focal point, composition) and one rejected alternative in a line. For `--target=component`, Steps 3 and 5 merge into one gate after the design is shown, carrying the read, the design and open questions (a rejected alternative only for a real fork).
 
-**4 Design.** Skip for `--mode=code`. Load `design-craft.md`. Build in the connected tool, or a text spec (`design-craft.md` §12) with `--source=none`. Show every state (default, loading, empty, error; disabled, selected, focused where relevant) with realistic mock data. Run the checklist; screenshot and inspect each target width, and name every element you claim present by node id, read back (no tool: say so, describe the layout per width).
+**4 Design.** Skip for `--mode=code`. Load `design-craft.md` and `micro-interactions.md`. Build in the connected tool, or a text spec (`design-craft.md` §12) with `--source=none`. Show every state (default, loading, empty, error; disabled, selected, focused where relevant) with realistic mock data. Run the checklist; screenshot and inspect each target width, and name every element you claim present by node id, read back (no tool: say so, describe the layout per width).
 
 **5 Design review ⛔.** Show it and wait. Revisions return to Step 4. A "looks fine" about something else is not a go.
 
-**6 Code.** Skip for `--mode=design` and `review`. Load `code-quality.md`. Reuse primitives and tokens; a new shared primitive only when two or more places need it. Colours, spacing and font sizes come from tokens; a missing token is proposed, never inlined. Mock data through the project's mock layer. With `--stack`, follow that preset; its "Required in every reply" items go under Questions.
+**6 Code.** Skip for `--mode=design` and `review`. Load `code-quality.md` and `micro-interactions.md`. Reuse primitives and tokens; a new shared primitive only when two or more places need it. Colours, spacing and font sizes come from tokens; a missing token is proposed, never inlined. Mock data through the project's mock layer. With `--stack`, follow that preset; its "Required in every reply" items go under Questions.
 
 **7 Verify.** Run the project check, report real output. Web: `python3 scripts/check-web.py <folder>`; fix each FAIL by its FIX text, rerun until OK; add `--tokens <token file>` to skip its colours. Colour: `scripts/contrast.py`. Screenshot the build at every target width; with a source, compare it (`scripts/pixeldiff.py`): matched, differs, why. With `--stack`, reopen the preset; answer every line of its Checklist and Reporting counts, with the reason for any you cannot tick. A reply without its required items is incomplete. Write the draft reply to a temp file (allowed with `--no-save`, outside the project) and run `python3 scripts/check-reply.py <file> [--source] [--stack tailwind-static]`; fix each FAIL by its FIX text, rerun until OK. Numbers in the reply come from a listing. Never claim a check you did not run.
 
@@ -93,6 +93,7 @@ Load only what the step needs.
 
 - `references/project-adapter.md`: Step 1
 - `references/design-craft.md`: Steps 3, 4
+- `references/micro-interactions.md`: Steps 4, 6; review
 - `references/accessibility.md`: Steps 4, 7; contrast
 - `references/responsive.md`: Steps 4, 7
 - `references/copy-and-mock.md`: visible text, mock data

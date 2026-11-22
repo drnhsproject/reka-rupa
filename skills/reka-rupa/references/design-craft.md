@@ -96,14 +96,8 @@ Design all of them, not just the happy path:
 ## 9. Motion
 
 - Purpose first: orient, confirm, or relate. Never loop for attention.
-- Short durations for feedback, slightly longer for transitions; respect the
-  user's reduced-motion setting.
 - Not everything moves; let the primary element lead.
-- Every interactive element answers hover, press and focus with a short
-  transition on `transform` and `opacity` (a colour change is a state swap
-  through a token, not an animation). Hover is never the only
-  path: touch and keyboard get the same feedback, and reduced motion removes
-  the movement but keeps the state change.
+- Values, states, component and feedback patterns: `micro-interactions.md`.
 
 ## 10. Tidiness
 
