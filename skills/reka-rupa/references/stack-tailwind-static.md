@@ -62,7 +62,7 @@ A reply without these two items is incomplete, even when the page is built.
    reject it. Cropped images keep their subject in frame (`object-position`), and
    the difference is reported.
 5. **Interaction.** Hover, active and focus transitions on every interactive
-   element (`design-craft.md` §9). CSS transitions that move an element carry
+   element (`micro-interactions.md`). CSS transitions that move an element carry
    `motion-reduce:` overrides (or sit under `motion-safe:`); colour and state
    changes stay. GSAP reveals and parallax are added only where the design
    shows them, inside

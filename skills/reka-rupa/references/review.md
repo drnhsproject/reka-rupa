@@ -1,6 +1,6 @@
 # Review mode
 
-For `--mode=review`. Audit only; change nothing. Step 1 of `SKILL.md` applies; this file replaces Steps 2 to 7. Also load accessibility, responsive, code-quality, copy-and-mock, web-standards (web target), design-craft (focal point, decoration, layout), fidelity-protocol (only with a source).
+For `--mode=review`. Audit only; change nothing. Step 1 of `SKILL.md` applies; this file replaces Steps 2 to 7. Also load accessibility, responsive, code-quality, copy-and-mock, web-standards (web target), design-craft (focal point, decoration, layout), micro-interactions, fidelity-protocol (only with a source).
 
 - Vague target ("the homepage"): choose it from the code; say what and why.
 - Scope: target file; direct imports; deeper children holding its content or controls (row actions, pagers, modals, menus); shell and token files; API routes and data files only as far as the target's states depend on them. `--scope` overrides. Unopened files go under "Not opened".

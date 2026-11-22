@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0
+
+- New `references/micro-interactions.md`: motion tokens with defaults (a project's own tokens win),
+  state baseline, patterns for core components, feedback patterns, reduced motion, checklist.
+  Loaded in Steps 4 and 6 and in review. `design-craft.md` §9 now points to it.
+- `check-web.py` gains motion checks: `transition: all` / `transition-all`, a transition on a layout
+  property (also `transition-[..]` and longhands such as `margin-left`), `@keyframes` or `animation:`
+  with no `prefers-reduced-motion` in the folder, and an `animate-*` class without `motion-safe:` or
+  `motion-reduce:`. A project that passed before may now fail on these.
+
 ## 0.2.2
 
 Tag `v0.2.1` was cut one commit too early (the files still said 0.2.0), so this release

@@ -6,6 +6,14 @@
 .o { color: rgb(0 0 0 / var(--o)); }
 .card { padding: 24px; border: 1px solid #ccc; box-shadow: 0 4px 12px #0003; }
 @media (min-width: 768px) { .card { gap: 1rem; } }
+.btn { transition: all 200ms; }
+.drawer { transition: width 300ms; }
+.spin { animation: spin 1s linear infinite; }
+.multi { transition:
+  all 1s; }
+.UP { TRANSITION: opacity 1s,
+  width 1s; }
+.ml { transition: margin-left 1s; }
 </style>
 </head>
 <body>
@@ -16,5 +24,6 @@
 <a href="#">Read more</a>
 <p style="color: red">Inline</p>
 <div class="w-[350px] p-4 min-[640px]:flex bg-[#ff0000]">Arbitrary px</div>
+<p class="motion-safe:animate-spin animate-pulse transition-[width] transition-[padding-top]">Unguarded</p>
 </body>
 </html>

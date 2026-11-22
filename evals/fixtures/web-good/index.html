@@ -17,6 +17,10 @@
 }
 .card { padding: 1.5rem; border: 1px solid var(--line); box-shadow: 0 4px 12px var(--shadow); }
 @media (min-width: 48em) { .card { gap: 1rem; } }
+.btn { transition: transform var(--motion-fast), opacity var(--motion-fast); }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+.fade { animation: fade-in-top 1s; transition: border-top-color 100ms, opacity var(--all-x); }
+.note { transition: opacity 1s, /* all */ transform 1s; }
 </style>
 </head>
 <body>
