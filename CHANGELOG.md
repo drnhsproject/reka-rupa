@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- New "Reply style" block in `SKILL.md`: the reply leads with the answer, with no greeting, announcement or recap; complete short sentences; negations, numbers and units are never shortened; warnings and questions to the user keep full wording. Text saved to files still follows the skill's own file rules.
+
 ## 0.3.0
 
 - New `references/micro-interactions.md`: motion tokens with defaults (a project's own tokens win),
